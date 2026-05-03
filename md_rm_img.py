@@ -74,9 +74,9 @@ for md_path in glob.glob(os.path.join(ROOT_DIR, "**", "*.md"), recursive=True):
         old_asset = os.path.join(md_dir, abandon_asset)
         new_asset = os.path.join(ROOT_DIR, "未被引用的图片", md_name.split('.')[0] + "_" + abandon_asset)
         new_dir = os.path.dirname(new_asset)
-        # if not os.path.exists(new_dir):
-        #     os.makedirs(new_dir)
-        # shutil.move(old_asset, new_asset)
+        if not os.path.exists(new_dir):
+            os.makedirs(new_dir)
+        shutil.move(old_asset, new_asset)
         warn_list.append("未被引用的图片," + old_asset + "\n移动至," + new_asset)
     for non_img in (img_set-asset_set):
         warn_list.append("无效的图片地址,"+ img_dict[non_img])
