@@ -20,7 +20,7 @@ ASSETS_NAME = "assets"
  
 # 定义一个正则表达式，匹配md文档中被引用的图片地址
 # 这个很重要，尽可能地匹配到所有typora的图片引用，否则匹配不全将导致很多图片误判为未被引用，导致误删或误移动
-pattern = r'\!\[[^\]]*\]\(([^)]*)\)' # 形如 ![alt text][path]
+pattern = r'\!\[[^\]]*\]\(([^)\s]+)(?:\s+[^)]*)?\)' # 形如 ![alt text](path) 或 ![alt text](path "title")
 pattern2 = r'<img\s+[^>]*src=["\']([^"\']*)["\'][^>]*/?>' # 形如 <img src="path">
 
 # 存储图片地址的提醒
