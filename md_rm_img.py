@@ -10,7 +10,7 @@ import shutil
 # 4.若被引用的图片地址不存在，则打印文档名称和图片地址，提示用户检查图片地址是否正确
 
 # md文档所在目录
-ROOT_DIR = os.path.normpath("D:/md-note")
+ROOT_DIR = os.path.normpath(".")
 
 # 忽略的md文档名称
 IGNORED_MD_LIST = []
@@ -64,6 +64,7 @@ for md_path in glob.glob(os.path.join(ROOT_DIR, "**", "*.md"), recursive=True):
             continue
         if "\\/" in matche or "/\\" in matche:
             warn_list.append("格式不规范的图片地址,"+ matche)
+            continue
         format_img = os.path.normpath(matche)
         # print(format_img)
         img_set.add(format_img)
