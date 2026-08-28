@@ -12,8 +12,8 @@ import shutil
 # md文档所在目录
 ROOT_DIR = os.path.normpath(".")
 
-# 忽略的md文档名称
-IGNORED_MD_LIST = []
+# 忽略的目录名称
+IGNORED_DIR_LIST = []
 
 # 存储图片的文件夹名称
 ASSETS_NAME = "assets"
@@ -31,8 +31,15 @@ for md_path in glob.glob(os.path.join(ROOT_DIR, "**", "*.md"), recursive=True):
     # print("正在处理md文档：" + md_path)
     md_dir = os.path.dirname(md_path)
     md_name = os.path.basename(md_path)
-    if (md_name in IGNORED_MD_LIST):
+    is_ignored = False
+    for ignore_dir in IGNORED_DIR_LIST:
+        if md_dir.find(ignore_dir) != -1:
+            is_ignored = True
+            break
+    if is_ignored:
+        print("忽略目录"+md_dir)
         continue
+    print("正在处理md文档："+md_path)
     # 相关容器
     img_set = set()
     img_dict = {}
